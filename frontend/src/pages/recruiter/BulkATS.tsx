@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function BulkATS() {
+export const BulkATS = () => {
   const candidates = [
     { name: 'Alice Smith', score: 92, grade: 'A+', skills: 'React, Node.js' },
     { name: 'Bob Jones', score: 75, grade: 'B', skills: 'Vue, PHP' },

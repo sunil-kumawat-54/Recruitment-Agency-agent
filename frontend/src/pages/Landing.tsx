@@ -9,7 +9,7 @@ const agents = [
   { name: 'Salary Negotiator', desc: 'Compensation benchmarks & strategies', icon: '💰' },
 ];
 
-export default function Landing() {
+export const Landing = () => {
   return (
     <div className="min-h-screen bg-slate-900 text-white font-['Plus_Jakarta_Sans']">
       {/* Hero Section */}

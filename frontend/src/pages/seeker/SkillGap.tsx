@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
 
-export default function SkillGap() {
+export const SkillGap = () => {
   const [skills, setSkills] = useState(['Python', 'SQL', 'Excel']);
   const [input, setInput] = useState('');
   

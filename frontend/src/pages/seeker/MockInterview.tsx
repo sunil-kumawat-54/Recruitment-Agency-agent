@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-export default function MockInterview() {
+export const MockInterview = () => {
   const [started, setStarted] = useState(false);
   const [role, setRole] = useState('Software Engineer');
   const [level, setLevel] = useState('Mid');

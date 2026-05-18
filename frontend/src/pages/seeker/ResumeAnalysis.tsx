@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useAgentStore } from '../../store/agentStore';
 import { analyzeResume } from '../../services/api';
 
-export default function ResumeAnalysis() {
+export const ResumeAnalysis = () => {
   const [targetRole, setTargetRole] = useState('Software Engineer');
   const { resumeAnalysis, setAnalysisResult, isLoading, setLoading, setError } = useAgentStore();
 
