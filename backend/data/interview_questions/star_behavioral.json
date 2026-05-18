@@ -1,0 +1,12 @@
+[
+  {
+    "question": "Tell me about a time when you faced a severe API latency issue in a production application and how you resolved it.",
+    "type": "technical",
+    "hint": "Focus on diagnostic tools used, specific query indexing steps taken, and quantified outcome results."
+  },
+  {
+    "question": "Describe a scenario where you had a strong disagreement with a senior product designer regarding database schema structures.",
+    "type": "behavioral",
+    "hint": "Describe the conflict objectively, show your active listening efforts, and explain the mutually satisfying architectural compromise."
+  }
+]

@@ -1,0 +1,19 @@
+RAHUL SHARMA
+Software Engineer | Bangalore, India | rahul.sharma@example.com
+
+SUMMARY
+Full-Stack Software Engineer with 3+ years of experience constructing high-availability backend microservices, indexing complex relational SQL architectures, and staging containerized pipelines.
+
+CORE COMPETENCIES
+- Languages: Python, JavaScript, SQL
+- Abstractions: FastAPI, Node.js, REST APIs
+- Tools: Git, Docker, Postgres, AWS Cloud
+
+EXPERIENCE
+Software Engineer | TechLabs Inc | Bangalore (2023 - Present)
+- Formulated 15+ backend endpoints in Python reducing API query latency bounds by 30%.
+- Restructured SQL relational index partitions across high-frequency customer databases.
+- Containerized 5 separate server deployment assets using Docker and tracked assets via Git.
+
+EDUCATION
+B.Tech Computer Science | National Institute of Technology (2020)

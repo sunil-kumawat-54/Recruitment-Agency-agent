@@ -1,0 +1,9 @@
+{
+  "job_title": "Software Engineer",
+  "company": "HireIQ Tech Lab",
+  "location": "Bangalore, India",
+  "salary_range": "15 - 22 LPA",
+  "required_skills": ["Python", "SQL", "REST APIs", "Git", "Docker"],
+  "experience_years": 3,
+  "description": "We are seeking a Backend Software Engineer with 3+ years of experience. You will build high-frequency REST APIs in Python, structure relational databases using SQL, containerize services using Docker, and coordinate version changes via Git."
+}

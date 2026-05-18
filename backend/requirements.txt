@@ -1,0 +1,15 @@
+streamlit
+fastapi
+uvicorn
+google-generativeai
+chromadb
+pypdf2
+python-docx
+python-multipart
+pydantic
+python-dotenv
+pandas
+plotly
+requests
+numpy
+scikit-learn

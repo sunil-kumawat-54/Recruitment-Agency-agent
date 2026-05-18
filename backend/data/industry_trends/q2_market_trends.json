@@ -1,0 +1,10 @@
+{
+  "role": "Software Engineer",
+  "location": "Bangalore",
+  "salary_minimum": 1200000,
+  "salary_median": 1800000,
+  "salary_maximum": 2400000,
+  "currency": "INR",
+  "market_trend": "Increasing",
+  "hot_skills": ["Docker", "Kubernetes", "AWS", "FastAPI"]
+}
