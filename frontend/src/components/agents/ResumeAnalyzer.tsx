@@ -10,9 +10,22 @@ export const ResumeAnalyzer: React.FC = () => {
   const { resumeReport, setResumeReport, isLoading, setIsLoading } = useAgentStore();
   const [targetRole, setTargetRole] = useState('Software Engineer');
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
 
   const handleFilesSelected = (files: File[]) => {
     setSelectedFiles(files);
+  };
+
+  const handleBrowse = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    if (files.length > 0) {
+      setSelectedFiles(files);
+      toast.success(`Loaded: ${files[0].name}`);
+    }
   };
 
   const handleAnalyze = async () => {
@@ -89,9 +102,9 @@ export const ResumeAnalyzer: React.FC = () => {
           
           <button
             onClick={handleAnalyze}
-            disabled={isLoading || selectedFiles.length === 0}
+            disabled={isLoading}
             className={`w-full text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 shadow-md flex items-center justify-center gap-2 ${
-              selectedFiles.length === 0 || isLoading
+              isLoading
                 ? 'bg-slate-700 cursor-not-allowed opacity-50'
                 : 'bg-gradient-to-r from-brand-purple to-indigo-600 hover:from-brand-purple/90 hover:to-indigo-600/90 cursor-pointer'
             }`}
@@ -105,7 +118,27 @@ export const ResumeAnalyzer: React.FC = () => {
           </button>
         </div>
 
+        {/* Hidden native file input */}
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept=".pdf,.docx"
+          className="hidden"
+          onChange={handleFileInput}
+        />
+
         <FileUpload onFilesSelected={handleFilesSelected} selectedFiles={selectedFiles} />
+
+        {/* Fallback browse button */}
+        {selectedFiles.length === 0 && (
+          <button
+            type="button"
+            onClick={handleBrowse}
+            className="w-full mt-2 border border-dashed border-brand-purple/40 text-brand-purple text-xs py-2 rounded-xl hover:bg-brand-purple/5 transition-colors"
+          >
+            📂 Click here to browse files if drag & drop doesn't work
+          </button>
+        )}
       </div>
 
       {/* Diagnostic Card Panel */}
