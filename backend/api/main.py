@@ -27,9 +27,14 @@ except ImportError:
 app = FastAPI(title="HireIQ API", version="1.0.0")
 
 # --- CORS MIDDLEWARE ---
+cors_origins = ["http://localhost:5173", "http://localhost:8501"]
+env_cors = os.getenv("CORS_ORIGINS")
+if env_cors:
+    cors_origins.extend([origin.strip() for origin in env_cors.split(",")])
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
