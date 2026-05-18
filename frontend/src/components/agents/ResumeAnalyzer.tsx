@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAgentStore } from '../../store/agentStore';
-import { api } from '../../services/api';
+import { analyzeResume } from '../../services/api';
 import { FileUpload } from '../shared/FileUpload';
 import { ATSScoreGauge } from '../shared/ATSScoreGauge';
 import { CheckCircle2, AlertTriangle, Lightbulb, Check, X, Zap } from 'lucide-react';
@@ -23,7 +23,7 @@ export const ResumeAnalyzer: React.FC = () => {
 
     setIsLoading(true);
     try {
-      const data = await api.resume.analyze(selectedFiles[0], targetRole);
+      const data = await analyzeResume(selectedFiles[0], targetRole);
       setResumeReport(data);
       toast.success('ATS Analysis completed!');
     } catch (err: any) {
@@ -90,7 +90,11 @@ export const ResumeAnalyzer: React.FC = () => {
           <button
             onClick={handleAnalyze}
             disabled={isLoading || selectedFiles.length === 0}
-            className="w-full bg-gradient-to-r from-brand-purple to-indigo-600 hover:from-brand-purple/90 hover:to-indigo-600/90 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 shadow-md flex items-center justify-center gap-2 disabled:opacity-50"
+            className={`w-full text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 shadow-md flex items-center justify-center gap-2 ${
+              selectedFiles.length === 0 || isLoading
+                ? 'bg-slate-700 cursor-not-allowed opacity-50'
+                : 'bg-gradient-to-r from-brand-purple to-indigo-600 hover:from-brand-purple/90 hover:to-indigo-600/90 cursor-pointer'
+            }`}
           >
             {isLoading ? (
               <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
