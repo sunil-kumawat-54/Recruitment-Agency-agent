@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const agents = [
   { name: 'Resume Analyzer', desc: 'ATS scoring & keyword optimization', icon: '📄' },
@@ -10,6 +11,7 @@ const agents = [
 ];
 
 export const Landing = () => {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-slate-900 text-white font-['Plus_Jakarta_Sans']">
       {/* Hero Section */}
@@ -26,10 +28,10 @@ export const Landing = () => {
           Automate your recruitment journey. Get ATS-optimized resumes, crack interviews with AI, and land the perfect role.
         </p>
         <div className="flex justify-center gap-6">
-          <button className="bg-indigo-600 hover:bg-indigo-700 px-8 py-3 rounded-lg font-semibold transition-all shadow-[0_4px_24px_rgba(79,70,229,0.3)]">
+          <button onClick={() => navigate('/seeker')} className="bg-indigo-600 hover:bg-indigo-700 px-8 py-3 rounded-lg font-semibold transition-all shadow-[0_4px_24px_rgba(79,70,229,0.3)]">
             Get Started as Job Seeker
           </button>
-          <button className="bg-slate-800 hover:bg-slate-700 border border-slate-700 px-8 py-3 rounded-lg font-semibold transition-all">
+          <button onClick={() => navigate('/recruiter')} className="bg-slate-800 hover:bg-slate-700 border border-slate-700 px-8 py-3 rounded-lg font-semibold transition-all">
             I'm a Recruiter
           </button>
         </div>
