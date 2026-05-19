@@ -68,56 +68,79 @@ async def startup_event():
 class InterviewStartRequest(BaseModel):
     role: str
     level: str
+    roundType: str = "Technical"
 
-class InterviewAnswerRequest(BaseModel):
-    questionId: int
+class InterviewEvaluateRequest(BaseModel):
+    question: str
     answer: str
+    role: str
+    level: str = "Mid"
+
+class InterviewCompleteRequest(BaseModel):
+    history: List[dict]
+    role: str
 
 class SkillGapRequest(BaseModel):
-    skills: List[str]
-    targetRole: str
+    current_skills: str
+    target_role: str
+    target_level: str = "Mid"
+    timeline_months: int = 6
+    hours_per_week: int = 10
 
 class JobMatchRequest(BaseModel):
     skills: str
-    experience: int
+    years_experience: int
     current_role: str
+    education: str
     location: str
     expected_salary: str
 
 class SalaryGuideRequest(BaseModel):
     role: str
-    experience: int
+    years_experience: int
     location: str
+    skills: str = ""
+    current_ctc: str = ""
+    received_offer: str = ""
 
 # --- ROUTERS ---
 interview_router = APIRouter(prefix="/api/interview", tags=["Interview"])
+
 @interview_router.post("/start")
 async def start_interview(req: InterviewStartRequest):
     agent = InterviewAgent(retriever=retriever)
-    return agent.generate_questions(req.role, req.level, "Technical Round")
+    return agent.generate_questions(req.role, req.level, req.roundType)
 
-@interview_router.post("/{session_id}/answer")
-async def submit_answer(session_id: str, req: InterviewAnswerRequest):
+@interview_router.post("/evaluate")
+async def evaluate_interview(req: InterviewEvaluateRequest):
     agent = InterviewAgent(retriever=retriever)
-    return agent.evaluate_answer("Mock question placeholder", req.answer, "Software Engineer")
+    return agent.evaluate_answer(req.question, req.answer, req.role, req.level)
+
+@interview_router.post("/complete")
+async def complete_interview(req: InterviewCompleteRequest):
+    agent = InterviewAgent(retriever=retriever)
+    return agent.summarize_session(req.history, req.role)
 
 skills_router = APIRouter(prefix="/api/skills", tags=["Skills"])
+
 @skills_router.post("/analyze")
 async def analyze_skills(req: SkillGapRequest):
     agent = SkillGapAgent(retriever=retriever)
-    return agent.analyze_gap(req.skills, req.targetRole, "Mid", 10, 6)
+    return agent.analyze_gap(req.current_skills, req.target_role, req.target_level, req.timeline_months, req.hours_per_week)
 
 jobs_router = APIRouter(prefix="/api/jobs", tags=["Jobs"])
+
 @jobs_router.post("/match")
 async def match_jobs(req: JobMatchRequest):
     agent = JobMatchingAgent(retriever=retriever)
     return agent.find_matches(req.dict())
 
 salary_router = APIRouter(prefix="/api/salary", tags=["Salary"])
+
 @salary_router.post("/guide")
 async def get_salary(req: SalaryGuideRequest):
     agent = SalaryNegotiationAgent(retriever=retriever)
-    return agent.get_salary_range(req.role, req.experience, req.location, ["General"])
+    return agent.get_salary_range(req.role, req.years_experience, req.location, req.skills.split(","))
 
 # --- APP MOUNTS ---
 app.include_router(resume_router)

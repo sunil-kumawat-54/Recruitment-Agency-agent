@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAgentStore, ActiveModule } from '../store/agentStore';
+import { useAgentStore, type ActiveModule } from '../store/agentStore';
 import { FileText, MessageSquare, Compass, Award, DollarSign, Brain, Users, Settings } from 'lucide-react';
 
 interface SidebarProps {
