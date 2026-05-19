@@ -27,7 +27,11 @@ except ImportError:
 app = FastAPI(title="HireIQ API", version="1.0.0")
 
 # --- CORS MIDDLEWARE ---
-cors_origins = ["http://localhost:5173", "http://localhost:8501"]
+cors_origins = [
+    "http://localhost:5173",
+    "http://localhost:8501",
+    "https://orchestra-recruitment-agency-sunil-d.netlify.app",
+]
 env_cors = os.getenv("CORS_ORIGINS")
 if env_cors:
     cors_origins.extend([origin.strip() for origin in env_cors.split(",")])
@@ -148,6 +152,14 @@ app.include_router(interview_router)
 app.include_router(skills_router)
 app.include_router(jobs_router)
 app.include_router(salary_router)
+
+@app.get("/")
+async def root():
+    return {
+        "service": "HireIQ API",
+        "status": "running",
+        "docs": "/docs",
+    }
 
 @app.get("/health")
 async def health_check():

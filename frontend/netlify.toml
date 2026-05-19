@@ -2,6 +2,9 @@
   command = "npm run build"
   publish = "dist"
 
+[build.environment]
+  VITE_API_URL = "https://orchestra-recruitment-agency-sunil.onrender.com"
+
 # This redirect ensures that React Router works perfectly on Netlify!
 # Without this, refreshing a page other than the home page will give a 404 error.
 [[redirects]]
